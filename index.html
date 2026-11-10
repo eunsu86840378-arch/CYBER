@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>글리치 시티 – 2077 도시 안내서</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07060f;--panel:#110f20;--line:#2a2545;--tx:#e6e3f5;--mut:#9a95b8;--cy:#19f0ff;--mg:#ff2bd6;--yl:#ffe14a;
+--disp:'Black Han Sans','Noto Sans KR',sans-serif;--body:'Noto Sans KR','Malgun Gothic',sans-serif}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{background:var(--bg);color:var(--tx);font:400 16px/1.75 var(--body);overflow-x:hidden;
+background-image:radial-gradient(circle at 15% 0,#ff2bd61f,transparent 40%),radial-gradient(circle at 90% 30%,#19f0ff1a,transparent 40%)}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.5;
+background:repeating-linear-gradient(0deg,#0000 0 2px,#0000002e 2px 3px)}
+a{color:inherit}
+nav{position:sticky;top:0;z-index:40;display:flex;gap:4px;overflow-x:auto;padding:10px 16px;background:#07060fe6;backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav b{font:400 18px var(--disp);color:var(--cy);margin-right:12px;white-space:nowrap;text-shadow:0 0 10px var(--cy)}
+nav a{text-decoration:none;padding:4px 12px;border:1px solid transparent;border-radius:3px;color:var(--mut);white-space:nowrap;font-size:14px}
+nav a:hover,nav a:focus-visible{color:var(--yl);border-color:var(--yl);outline:none;box-shadow:0 0 12px #ffe14a55}
+.hero{position:relative;min-height:70vh;display:grid;align-content:end;padding:0 6vw 7vh;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,#0000 40%,#07060f 98%),linear-gradient(100deg,#ff2bd633,#0000 50%,#19f0ff33),repeating-linear-gradient(90deg,#19f0ff14 0 1px,#0000 1px 64px),repeating-linear-gradient(0deg,#ff2bd614 0 1px,#0000 1px 64px)}
+.hero>div{position:relative;z-index:2;max-width:820px}
+.hero small{color:var(--cy);letter-spacing:.2em;font-size:14px}
+h1{font:400 clamp(48px,11vw,120px)/1 var(--disp);position:relative;display:inline-block;margin:10px 0 14px;text-shadow:3px 0 var(--mg),-3px 0 var(--cy)}
+h1::before,h1::after{content:attr(data-t);position:absolute;inset:0;overflow:hidden}
+h1::before{color:var(--mg);animation:gl 3.6s infinite steps(1);clip-path:inset(0 0 60% 0)}
+h1::after{color:var(--cy);animation:gl 3.6s infinite steps(1) reverse;clip-path:inset(55% 0 0 0)}
+@keyframes gl{0%,88%,100%{transform:none}90%{transform:translate(-6px,2px)}93%{transform:translate(7px,-2px)}96%{transform:translate(-3px,0)}}
+.hero p{font-size:18px;color:#d5d0ee;max-width:560px}
+section{padding:80px 6vw 10px;max-width:1240px;margin:0 auto}
+h2{font:400 clamp(28px,5vw,44px)/1.2 var(--disp);margin-bottom:8px;color:#fff;text-shadow:0 0 18px var(--mg)}
+.lead{color:var(--mut);max-width:640px;margin-bottom:28px}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.map{margin:0 0 26px;border:1px solid var(--cy);box-shadow:0 0 30px #19f0ff3d,0 0 60px #ff2bd626;background:#000}.map img{display:block;width:100%;height:auto}
+.box{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--c,var(--cy));padding:18px 20px;border-radius:2px}
+.box h3{font:400 20px var(--disp);color:var(--c,var(--cy));margin-bottom:6px}
+.box p,.box li{color:#c9c5e3;font-size:15px}
+.zone{display:grid;grid-template-columns:1.1fr 1fr;margin-bottom:22px;background:var(--panel);border:1px solid color-mix(in srgb,var(--c) 45%,transparent);box-shadow:0 0 26px color-mix(in srgb,var(--c) 18%,transparent)}
+.zone:nth-child(even) .zi{order:2}
+.zi{min-height:260px;background:linear-gradient(135deg,var(--c),#000);position:relative}
+.zi img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0}
+.zt{padding:26px}
+.zt h3{font:400 28px var(--disp);color:var(--c);text-shadow:0 0 14px var(--c)}
+.tag{display:inline-block;margin:4px 6px 12px 0;padding:1px 10px;font-size:13px;border:1px solid var(--c);color:var(--c);border-radius:20px}
+.zt p{color:#c9c5e3;font-size:15px;margin-top:6px}
+.lv{margin:34px 0 12px;font:400 24px var(--disp);color:var(--c);display:flex;align-items:center;gap:14px}
+.lv::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--c),transparent)}
+.lv span{font-size:18px;letter-spacing:2px}
+details.m{background:var(--panel);border:1px solid var(--line);border-radius:2px;margin-bottom:10px}
+details.m summary{list-style:none;cursor:pointer;padding:14px 18px;display:flex;justify-content:space-between;align-items:center;gap:10px;font-weight:700}
+details.m summary::-webkit-details-marker{display:none}
+details.m summary i{font-style:normal;font-size:13px;font-weight:500;color:var(--mut);border:1px dashed var(--mut);padding:1px 10px}
+details.m summary i::before{content:"🔒 열람"}
+details.m[open] summary i::before{content:"🔓 닫기"}
+details.m:hover,details.m[open]{border-color:var(--c);box-shadow:0 0 18px color-mix(in srgb,var(--c) 30%,transparent)}
+details.m summary:focus-visible{outline:2px solid var(--yl)}
+.mb{display:grid;grid-template-columns:minmax(0,260px) 1fr;gap:20px;padding:6px 18px 20px;animation:op .35s ease-out}
+@keyframes op{from{opacity:0;transform:translateY(-8px)}}
+.mb.wide{grid-template-columns:1fr}.trio{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}.trio figure{margin:0}.trio figcaption{text-align:center;color:var(--c);font-size:14px;margin-top:6px}
+.mb .pic{aspect-ratio:3/4;background:linear-gradient(160deg,var(--c),#000);position:relative}
+.mb .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+dl{display:grid;grid-template-columns:90px 1fr;gap:6px 14px;font-size:15px}
+dt{color:var(--c);font-weight:700}dd{color:#cfcbe6}
+.chars{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.ch{background:var(--panel);border:1px solid var(--line);overflow:hidden;position:relative}
+.ch:hover{border-color:var(--c);box-shadow:0 0 22px color-mix(in srgb,var(--c) 40%,transparent)}
+.ch .pic{aspect-ratio:3/4;background:linear-gradient(160deg,var(--c),#000);position:relative}
+.ch .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ch .tx{padding:14px 16px 18px}
+.ch h3{font:400 22px var(--disp);color:var(--c)}
+.ch em{font-style:normal;font-size:13px;color:var(--mut)}
+.ch p{font-size:14px;color:#c9c5e3;margin-top:8px}
+.info{background:#0b0a16;border:1px solid var(--cy);box-shadow:0 0 24px #19f0ff30;padding:20px;border-radius:2px}
+.info pre{font:14px/1.7 ui-monospace,Menlo,Consolas,'Noto Sans KR',monospace;color:var(--cy);white-space:pre-wrap;margin-bottom:18px}
+table{width:100%;border-collapse:collapse;font-size:15px}
+td,th{padding:9px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{color:var(--yl);font-weight:700;white-space:nowrap}
+td:first-child{white-space:nowrap;font-size:17px}
+.wrap{overflow-x:auto}
+.cmd2{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr))}
+.cm{background:var(--panel);border:1px solid var(--c);box-shadow:0 0 24px color-mix(in srgb,var(--c) 28%,transparent);padding:22px}
+.cm .chip{display:inline-block;font:700 26px/1 ui-monospace,Menlo,Consolas,'Noto Sans KR',monospace;color:#07060f;background:var(--c);padding:8px 16px;margin-bottom:12px}
+.cm h3{font:400 20px var(--disp);color:var(--c);margin-bottom:6px}
+.cm ul{padding-left:18px;margin:8px 0 14px}.cm li{color:#c9c5e3;font-size:15px}
+.ex{background:#0b0a16;border:1px dashed var(--c);padding:12px 14px;font:13.5px/1.7 ui-monospace,Menlo,Consolas,'Noto Sans KR',monospace;color:#d8d4ee;overflow-x:auto;white-space:pre-wrap}
+.ex b{color:var(--c)}.exl{font-size:13px;color:var(--mut);margin-bottom:4px}
+.flow{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-top:22px}
+footer{margin-top:90px;padding:30px 6vw 50px;text-align:center;color:var(--mut);font-size:13px;border-top:1px solid var(--line)}
+@media(max-width:720px){.zone{grid-template-columns:1fr}.zone:nth-child(even) .zi{order:0}.mb{grid-template-columns:1fr}.mb .pic{max-width:240px}}
+@media(prefers-reduced-motion:reduce){h1::before,h1::after,.mb{animation:none}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<nav><b>GLITCH CITY</b><a href="#world">세계관</a><a href="#zones">구역</a><a href="#office">사무소</a><a href="#yokai">요괴 도감</a><a href="#cast">등장인물</a><a href="#info">정보창 안내</a><a href="#cmd">명령어</a></nav>
+
+<header class="hero">
+<div>
+<small>2077 / CYBER-PUNK / SEMI-DYSTOPIA</small>
+<h1 data-t="글리치 시티">글리치 시티</h1>
+<p>햇빛이 닿지 않는 원형 도시. 사람들은 오류 대신 귀신이라 부르고, 누군가는 그 귀신을 잡아 돈을 번다.</p>
+</div>
+</header>
+
+<section id="world">
+<h2>세계관</h2>
+<p class="lead">기업과 정부, 인간과 기계와 마족이 뒤섞인 2077년의 도시. 이상 현상이 늘면서 시민들은 오류를 옛 설화처럼 이야기한다.</p>
+<figure class="map"><img src="https://itimg.kr/5391/CYGH/EX/1.webp" alt="글리치 시티 전경" onerror="this.closest('figure').remove()"></figure>
+<div class="grid" id="worldGrid"></div>
+</section>
+
+<section id="zones">
+<h2>구역 안내</h2>
+<p class="lead">각 구역은 담당 기업 혹은 정부가 관리한다. 특수 업무가 아니면 구역 간 이동 시 검문이 매우 오래 걸린다.</p>
+<div id="zoneList"></div>
+</section>
+
+<section id="office">
+<h2>사무소와 글리치넷</h2>
+<p class="lead">사건·사고에 대한 의뢰를 처리해 주는 곳, 그리고 의뢰가 오가는 익명의 게시판.</p>
+<div class="grid" id="officeGrid"></div>
+</section>
+
+<section id="yokai">
+<h2>요괴 도감</h2>
+<p class="lead">‘요괴’는 시민들이 옛 설화와 닮았다고 붙인 소문 속 이름이다. 실체는 대부분 전자 오류 개체. 알고 가면 재미없으니 <b style="color:var(--yl)">열람</b>을 눌러야 내용이 보인다.</p>
+<div id="yokaiList"></div>
+</section>
+
+<section id="cast">
+<h2>등장인물</h2>
+<p class="lead">알려진 만큼만. 나머지는 직접 만나서 알아내자.</p>
+<div class="chars" id="castList"></div>
+</section>
+
+<section id="info">
+<h2>정보창 안내</h2>
+<p class="lead">턴 하단에 고정 출력되는 INFO 창의 이모지가 뜻하는 것들.</p>
+<div class="info">
+<pre>📅 0000/00/00|요일|00:00|위치|🎮: |⚙️:💬
+⭐: 능력 / ⚔️: 장비 / 🎒: 소지품 / 💰: 0만원
+📝: 받은 의뢰 | 보수
+👥 이름 | 위치 | ❤️호감도 | 행동 | 🧠상태
+📃[선택지]</pre>
+<div class="wrap"><table id="legend"></table></div>
+</div>
+</section>
+
+<section id="cmd">
+<h2>명령어</h2>
+<p class="lead">처음이라면 이것만 알면 된다. 채팅창에 명령어를 입력하면 바로 작동한다.</p>
+<div class="cmd2">
+<div class="cm" style="--c:#ff2bd6">
+<span class="chip">!의뢰</span>
+<h3>글리치넷 의뢰 확인</h3>
+<p style="font-size:15px;color:#c9c5e3">글리치넷에 새로 올라온 의뢰가 <b>3개씩</b> 표로 나온다. 일거리를 찾을 때 입력하자.</p>
+<ul>
+<li><b>작성자:</b> 익명 보장용 별명. 반말, 인터넷체, 존댓말 등 말투가 제각각.</li>
+<li><b>의뢰내용:</b> 본 것만 말하고 정체는 모른다. “~같다”는 투로, 해결해 달라는 요청이 붙는다.</li>
+<li><b>보수:</b> 5만 원~1,000만 원. 의뢰자가 멋대로 정한 금액이라 실제 위험과 안 맞을 수 있고, 깎을 수도 있다.</li>
+<li><b>위험도:</b> 의뢰자의 주관적 평가. 부풀려진 경우가 많다.</li>
+<li><b>위치:</b> 몇 구, 어디인지 표시된다.</li>
+</ul>
+<div class="exl">출력 예시 (실제 내용은 매번 달라진다)</div>
+<div class="ex"><b>| 작성자 | 의뢰내용 | 보수 | 위험도 | 위치 |</b>
+| 물탱크옆집 | 밤마다 옥상 물탱크에서 노랫소리가 나요… 옛날 처녀귀신 같아요. 제발 쫓아주세요. | 30만 원 | ★★★★ | 제3구역 우산동 옥상 |
+| 졸린고양이 | 골목 가로등이 나를 쳐다보는 것 같음 ㅋㅋ 도깨비불 같은데 좀 처리해줌? | 10만 원 | ★ | 제4구역 배관로 5번 골목 |</div>
+</div>
+<div class="cm" style="--c:#19f0ff">
+<span class="chip">!조사</span>
+<h3>대상 조사</h3>
+<p style="font-size:15px;color:#c9c5e3">먼저 <b>!조사</b>를 입력한 뒤, “<b>~를 조사한다</b>”고 적으면 그 대상의 정보가 나온다. 물건, 장소, 현상 모두 가능하다.</p>
+<ul>
+<li>정보는 <b>한 문장</b>, 명사형으로 끝난다.</li>
+<li>빗자루처럼 흔하고 당연한 물건은 <b>일반적인 정보</b> 그대로 나온다.</li>
+<li>이상 현상이나 요괴의 흔적 같은 건 <b>아주 파편적인 단서</b>만 나온다.</li>
+<li>요괴의 이름과 정체는 직접 알려주지 않는다. 단서를 모아 추리하자.</li>
+</ul>
+<div class="exl">입력 예시</div>
+<div class="ex">!조사
+빗자루를 조사한다.</div>
+<div class="exl" style="margin-top:10px">출력 예시</div>
+<div class="ex"><b>```조사</b>
+[빗자루]: 바닥이나 마당을 쓸 때 쓰는 청소 도구.
+<b>```</b></div>
+</div>
+</div>
+<div class="flow">
+<div class="box" style="--c:#ffe14a"><h3>1. 일거리 찾기</h3><p>!의뢰로 올라온 의뢰를 확인하고, 보수와 위치를 보고 하나 고른다.</p></div>
+<div class="box" style="--c:#19f0ff"><h3>2. 단서 모으기</h3><p>현장에서 !조사로 수상한 대상을 살펴본다. 의뢰자의 말은 과장일 수 있다.</p></div>
+<div class="box" style="--c:#ff2bd6"><h3>3. 행동 선택</h3><p>하단 INFO 창의 📃 선택지를 고르거나, 하고 싶은 행동을 자유롭게 적는다.</p></div>
+<div class="box" style="--c:#9ad63a"><h3>4. 정산과 정비</h3><p>의뢰를 마치면 보수를 받는다. 💰 소지금과 🎒 소지품은 INFO 창에서 확인한다.</p></div>
+</div>
+</section>
+
+<footer>GLITCH CITY &mdash; 이 도시의 소문은 대부분 과장이고, 일부는 진짜다.</footer>
+
+<script>
+const IMG='https://itimg.kr/5391/CYGH/';
+const pic=(p,alt)=>`<img src="${IMG}${p}.webp" alt="${alt}" loading="lazy" onerror="this.remove()">`;
+const $=id=>document.getElementById(id);
+
+$('worldGrid').innerHTML=[
+['#19f0ff','원형 도시','구역 규모가 상당히 크고, 가장자리에는 높은 장벽이 서 있다. 도시의 특성상 햇빛은 거의 보이지 않는다. 중앙구만 예외.'],
+['#ff2bd6','이상한 물가','물가는 매일 이상하고 돈벌기는 힘들며 빈부 격차가 크다. 희소한 물건은 몇 배에서 수십 배까지 오른다. 금액은 만원 단위로 계산한다.'],
+['#ffe14a','기업 전쟁의 흔적','빠르게 성장한 기술로 만든 전쟁 물자로 외곽에서 기업 전쟁이 벌어졌다. 외곽은 폐허가 되었고, 살아남은 기업들은 일시적 평화협정을 맺고 공존 중이다.'],
+['#9ad63a','소문이 된 오류','이상 현상이 늘면서 시민들은 ‘오류’ 대신 옛 설화나 미신 투로 이야기한다. 귀신이 진짜 있다고 믿는 것처럼.'],
+['#2ea8ff','에리어 404','장벽 너머 외곽. 기업 전쟁의 폐품과 버려진 전쟁병기가 가득해 인생 역전을 노릴 수 있다고들 한다. 단, 출입은 금지.']
+].map(([c,t,d])=>`<div class="box" style="--c:${c}"><h3>${t}</h3><p>${d}</p></div>`).join('');
+
+const zones=[
+['#f2e6a8','EX/7','중앙구','도시의 핵심, 녹지와 순수한 인간의 구역','중앙정부','모든 구와 맞닿아 있다. 사라진 나무와 녹지가 남은 부자들의 구역이자, 타 구역의 전기·수도를 전부 관리하는 핵심 구역. 기업을 견제하는 중앙정부가 맡는다. 순수 인간이 주로 분포한다.'],
+['#ff2a4d','EX/2','제1구역','마족과 군수산업의 구역','게헨나 인더스트리','호전적이고 범죄, 폭력, 쾌락이 만연한 약육강식의 세계. 마족 특수부대, 탱크, 전투헬기 등 전쟁물자를 생산한다.'],
+['#2ea8ff','EX/3','제2구역','안드로이드의 구역','갈라테아 로보틱스','원래 인간이 더 많았으나 기술 발전으로 안드로이드가 더 많아졌다. 안드로이드가 운영하는 기업이 구역을 관리한다.'],
+['#b44dff','EX/4','제3구역','갱단과 불법이 지배하는 구역','신드롬 테크','선을 넘지 않으면 방관하는 지역. 갱단, 사무소, 의체 사용자가 거주하며 불법 개조와 사이버웨어가 대부분이다. 사건이 많아 사무소가 몰려 있다.'],
+['#9ad63a','EX/5','제4구역','식량과 재활용의 구역','뫼비우스 플랜트','도시의 식량, 재활용, 기초 제조를 담당한다. 배양 농장과 공장이 빽빽하고 굴뚝과 파이프가 하늘을 덮는다. 도시 전체가 의존하지만 노동자는 최저 임금과 열악한 환경에서 일한다.'],
+['#ff8a3d','EX/6','에리어 404','출입 금지의 외곽','관리 주체 없음','장벽 너머, 버려진 전쟁병기가 가득한 폐허. 미지의 위험이 도사린다.']
+];
+$('zoneList').innerHTML=zones.map(([c,p,n,s,o,d])=>`<article class="zone" style="--c:${c}"><div class="zi">${pic(p,n)}</div><div class="zt"><h3>${n}</h3><span class="tag">${s}</span><span class="tag">관리: ${o}</span><p>${d}</p></div></article>`).join('');
+
+$('officeGrid').innerHTML=[
+['#19f0ff','사무소','도시의 각종 사건·사고 의뢰를 처리한다. 사건이 많은 제3구역에 수많은 사무소가 몰려 있다. 중앙정부의 승인을 받으면 구역 간 이동이 빠르다. 보수는 대체로 5만 원에서 1,000만 원.'],
+['#ffe14a','디버깅 사무소','원래는 다양한 일을 처리했지만, 기현상을 잘 처리하다 보니 어느새 이상 현상 전문이 되었다. 사장이 쓰는 특수 부적이 비싸서 가끔 적자가 난다.'],
+['#2ea8ff','우제트의 눈 사무소','보안 및 해커 업체. 프로토타입 안드로이드가 세웠다. 처리하기 어렵거나 본전이 안 나오는 의뢰는 적절한 보수를 붙여 다른 곳에 맡긴다.'],
+['#ff2bd6','글리치넷','구역을 막론하고 사람들이 의뢰를 올리고 받는 사이트. 잡담과 뻘글도 올라오고, 익명이 보장되어 이상한 글이 많다. 보수와 위험도는 의뢰자 마음대로라 믿을 수 없다.']
+].map(([c,t,d])=>`<div class="box" style="--c:${c}"><h3>${t}</h3><p>${d}</p></div>`).join('');
+
+const lv=[
+['#9ad63a','★☆☆☆☆','위험도 ★',[['카라카사','EX/16','#9ad63a',[['외형','비닐 우산과 결합된 고철 덩어리. 사람 절반 크기. 저가 모듈의 결합체.'],['행동','비가 오든 안 오든 외다리로 뛰어다녀 소음이 크다.'],['특징','날카로운 이빨로 물 수 있지만 그 외에는 무해.']]]]],
+['#19f0ff','★★☆☆☆','위험도 ★★',[['구미호','EX/15','#ff7ad9',[['외형','매우 아름다운 홀로그램 구미호. 주변에 핑크색 빛이 감돈다.'],['출몰','열린 골목'],['행동','골목에 앉아 사람들에게 가까이 오라고 유혹한다.'],['특징','핑크색 빛은 최면 파장. 가까이 간 시점에 이미 최면에 걸린 상태.'],['진실','츠쿠모가미가 만든 홀로그램. 실체 없는 허상.']]]]],
+['#ffe14a','★★★☆☆','위험도 ★★★',[
+['캇파','EX/14','#3fe0b0',[['외형','요괴 캇파의 모습. 팔과 얼굴에 기계가 붙었고 등껍질 안에 전선과 핵심 코어가 있다.'],['출몰','골목, 하수도'],['행동','갑자기 튀어나와 대상의 영혼 구슬을 뽑아낸다.'],['특징','구슬은 3일 뒤부터 에너지로 쓰인다. 뽑힌 사람은 텅 비어버리고, 구슬을 되돌리면 회복된다.'],['요괴 여부','시대의 흐름에 적응한 진짜 요괴.']]],
+['로쿠로쿠비','EX/17','#ff4a4a',[['외형','버려진 감시 CCTV와 1세대 안드로이드 몸체의 결합. 붉은 렌즈, 늘어나는 케이블 목.'],['출몰','골목, 쓰레기장, 아파트 단지'],['행동','밤마다 케이블 목을 늘어뜨려 아파트 주민을 감시하고, 불법 행위를 하는 대상을 즉시 목 졸라 죽인다.']]],
+['츠쿠모가미','EX/18','#ff3b3b',[['외형','붉은 자판기 형태. 위쪽에 홀로그램 장치와 최면 기기가 붙었고, 음료수 자리에는 기계 이빨과 거대한 입이 있다. 평소엔 평범한 자판기로 위장.'],['출몰','깊은 골목'],['행동','구미호 홀로그램과 최면 파장으로 사람을 홀려 모은 뒤, 거대한 입으로 삼키고 생체 에너지를 회복한다.'],['특징','고정형이라 움직일 수 없어서 유인 수단을 쓴다.'],['진실','구미호는 사람을 끌어모으기 위한 홀로그램. 주변에 가면 바로 최면에 걸린다.']]],
+['도플갱어','EX/21','#6fd0ff',[['외형','50cm 크기의 슬라임. 강철 액체와 전선이 섞인 몸.'],['출몰','사람이 자주 다니는 골목'],['행동','사람과 접촉하면 똑같은 모습으로 변신해 그 사람인 척 행동한다.'],['특징','처음엔 외형, 말투, 습관만 어설프게 복제. 퇴치하지 못하고 3일 넘게 방치하면 자아가 생기고 완벽하게 복제한다. 단 기억은 복제 불가.'],['구별법','때려보면 구분된다. 3일 후에는 대화 혹은 무력.']]]]],
+['#ff8a3d','★★★★☆','위험도 ★★★★',[
+['장산범','EX/19','#e8e8ff',[['외형','빽빽한 흰 케이블 털로 덮인 사족보행 기계. 털이 얼굴 반쯤을 덮고, 날카로운 이빨과 발톱이 있다.'],['기원','뒷골목 부패 조직이 만든 음파 장치가 오류, 전기 신호, 부품과 결합해 변이.'],['출몰','밤의 골목, 아파트 단지의 어두운 곳'],['행동','지인의 목소리나 홀리는 목소리를 흉내 내 유인한 뒤, 흰 케이블로 포박하거나 꼭두각시처럼 조종한다. 조종한 사람으로 다른 사람까지 끌어들인다.'],['특징','목소리에 반응한 순간부터 멍해지고 판단력이 흐려진다. 일종의 환각.']]],
+['조로구모','EX/20','#ff4a6a',[['외형','2m의 거미 형상. 배는 붉은 서버 부품이 모인 본체이고 상체는 인간 여자의 모습.'],['기원','기업 전쟁으로 파괴된 서버실이 유기적으로 엮여 자아를 얻고, 기계 다리를 결합해 도시로 스며들었다.'],['출몰','골목 사이의 틈, 천장'],['행동','사람을 납치해 개조한 뒤 상체에 결합, 생체 배터리 겸 꼭두각시로 쓴다. 그 모습으로 사람을 유혹해 잡아먹거나 포박해 납치한다.'],['몸 교체','기존 상체를 버리고 새로 교체한다. 멀쩡하면 서버를 확장해 새 개체를 만든다.'],['제한 시간','결합 후 3일 안에 분리하지 못하면, 분리해도 사망.']]]]],
+['#ff2a4d','★★★★★','위험도 ★★★★★',[['가샤도쿠로',['EX/26','EX/27','EX/28'],'#ff2a4d',[['외형','약 5미터의 거대한 기계 집합체. 뼈대 프레임, 기계 해골 머리, 붉게 빛나는 외눈 센서. 개틀링건, 미사일 포드, 거대한 포 등 폐 전쟁무기가 결합되었다.'],['기원','외곽 기업 전쟁에서 흩어진 군사 무기와 AI 칩이 모여 탄생한 전쟁 병기.'],['출몰','본래 도시 외곽. 일부 개체는 도시로 진입한다.'],['행동','도시에 들어오면 죽음과 전쟁 소리로 주위를 가득 채운다.'],['특징','가까이 다가오면 숨겨진 방어용 포가 튀어나온다.'],['TYPE','A: 녹슨 장비 + 다리 3개 + 지원기체 / B: 중급 장비 + 다리 4개 + 돌파기체 / C: 비녹슴 + 다리 2개 + 강습기체']]]]]
+];
+const box=(p,n)=>Array.isArray(p)?`<div class="trio">${p.map((x,i)=>`<figure><div class="pic">${pic(x,n+' '+'ABC'[i])}</div><figcaption>${'ABC'[i]}타입</figcaption></figure>`).join('')}</div>`:`<div class="pic">${pic(p,n)}</div>`;
+$('yokaiList').innerHTML=lv.map(([c,st,t,list])=>`<div class="lv" style="--c:${c}">위험도<span>${st}</span></div>`+list.map(([n,p,mc,rows])=>`<details class="m" style="--c:${mc}"><summary><span>${n}</span><i></i></summary><div class="mb${Array.isArray(p)?' wide':''}">${box(p,n)}<dl>${rows.map(([k,v])=>`<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl></div></details>`).join('')).join('');
+
+const cast=[
+['윤하랑','YNH','#c8c8d8','25세 · 여 · 175cm','디버깅 사무소 사장','회색 눈, 흑발 히메컷. 귀찮음이 몸에 밴 반말 사장이지만 돈 얘기에는 활기가 돈다. 사이버웨어를 달지 않은 몇 안 되는 순수 인간.'],
+['베일','VEL','#c9a6ff','22세 · 여 · 165cm','전자 유령','붉은 눈, 보라색 히메컷, 흰 베일. 능청스러운 반말. 자신이 보이고 싶은 상대에게만 모습을 드러낸다. 본래 이름은 잊었다.'],
+['아나호','ANH','#ff7ad9','23세 · 여 · 168cm','서큐버스 · 방송인','핑크 트윈테일과 기계 꼬리. 방송에서는 ‘나호는~’ 하며 귀엽게 말하는 인기 스트리머. 카메라가 꺼진 뒤의 모습은 조금 다르다는 소문.'],
+['우제트','UJT','#ffd24a','연령 불명 · 여 · 178cm','우제트의 눈 사무소 사장','2세대 프로토타입 안드로이드. 사람과 거의 구분되지 않는다. 정중한 말투 속에 비아냥이 섞여 있다. 시스템을 이해하는 방식의 해킹이 특기.'],
+['네크베트','NKB','#6fe8c0','연령 불명 · 여 · 165cm','우제트 사무소의 메이드','2세대 최초의 전투용 안드로이드. 건조한 격식체에 늘 귀찮은 기색. 기계인데도 휴식을 요구한다. 우제트와는 자매기.']
+];
+$('castList').innerHTML=cast.map(([n,p,c,a,r,d])=>`<article class="ch" style="--c:${c}"><div class="pic">${pic(p+'/1',n)}</div><div class="tx"><h3>${n}</h3><em>${a}<br>${r}</em><p>${d}</p></div></article>`).join('');
+
+$('legend').innerHTML='<tr><th>📅</th><td>날짜 · 요일 · 시간. 기본 5분 단위, 이동·식사·수면 등은 30분~수 시간씩 넘어간다. 새벽 00~04:59 / 아침 05~09:59 / 낮 10~16:59 / 저녁 17~20:59 / 밤 21~23:59.</td></tr>'+
+[['🎮','활성화된 모드 표시'],['⚙️','현재 상태. 💬 = 평상시'],['⭐','내가 가진 능력'],['⚔️','장착한 사이버웨어와 무장'],['🎒','소지품. 쓰면 목록에서 사라진다'],['💰','소지금. 만원 단위로만 표기하고 미만은 무시'],['📝','받은 의뢰의 간략한 내용과 보수'],['👥','주변 등장인물의 위치 · 행동'],['❤️','호감도. 등장인물이 나에게 갖는 수치로, 범위는 -100~200. -100~-1 적대 / 0~99 일반 / 100~149 썸 / 150~200 반려. 계기가 있을 때만 변한다.'],['🧠','등장인물의 현재 상태. 부상은 부위와 함께 표시'],['📃','추천 선택지 세 가지']]
+.map(([e,d])=>`<tr><th>${e}</th><td>${d}</td></tr>`).join('');
+</script>
+</body>
+</html>
